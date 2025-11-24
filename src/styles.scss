@@ -1,80 +1,72 @@
-/* src/styles.css */
+/* 1. Importar Bootstrap (Obligatorio) */
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+/* 2. Fuentes y Variables */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
-/* src/styles.css */
-@import "../node_modules/bootstrap/scss/bootstrap.scss"; /* Opción A (versiones antiguas CLI) */
-/* O SI TE DA ERROR LA DE ARRIBA, USA ESTA: */
 
-/* ... luego aquí van tus estilos :root, body, etc. que ya tenías ... */
 :root {
-  --cv-blue: #0F3F7A; /* Azul corporativo */
+  --cv-blue: #0F3F7A;       /* Azul oscuro del logo */
   --cv-blue-hover: #0a2a52;
-  --cv-radius-card: 24px;
-  --cv-radius-input: 12px;
+  --cv-light-blue: #eef2f7; /* Fondo suave por si falla la imagen */
 }
 
-body {
+/* 3. Estilos Base */
+body, html {
+  height: 100%;
+  margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background-color: var(--cv-blue);
-  overflow-x: hidden;
+  background-color: var(--cv-blue); /* Fondo de respaldo */
 }
 
-/* --- Estilos del Layout --- */
+/* 4. Layout Principal (La Ola) */
 .auth-wrapper {
   min-height: 100vh;
   width: 100%;
-  /* IMPORTANTE: Aquí deberías poner la URL de tu SVG de la ola exportado de Figma */
-  background: url('assets/wave-bg.svg') no-repeat center center;
+  background-image: url('/assets/wave-bg.svg'); /* Asegúrate de tener esta imagen */
   background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
   display: flex;
-  align-items: center;
-  position: relative;
+  flex-direction: column;
 }
 
-/* --- Tarjeta Flotante --- */
+/* 5. La Tarjeta Blanca Flotante (Lo que falta en tu captura) */
 .auth-card {
   background: white;
-  border-radius: var(--cv-radius-card);
+  border-radius: 24px; /* Bordes redondeados */
   padding: 2.5rem;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  border: none;
   width: 100%;
-  max-width: 480px; /* Ancho máximo de la tarjeta */
-  margin: 0 auto; /* Centrado */
 }
 
-/* --- Inputs Personalizados --- */
+/* 6. Inputs y Botones personalizados */
 .form-control {
-  border-radius: var(--cv-radius-input);
-  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  padding: 12px 16px;
   border: 1px solid #dee2e6;
-  font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
 
 .form-control:focus {
   border-color: var(--cv-blue);
-  box-shadow: 0 0 0 0.2rem rgba(15, 63, 122, 0.15);
+  box-shadow: 0 0 0 4px rgba(15, 63, 122, 0.1);
 }
 
-.form-label {
-  font-weight: 600;
-  font-size: 0.85rem;
-  margin-bottom: 0.4rem;
-}
-
-/* --- Botones --- */
 .btn-primary-cv {
   background-color: var(--cv-blue);
-  color: white;
   border: none;
-  border-radius: var(--cv-radius-input);
-  padding: 0.8rem;
+  border-radius: 12px;
+  padding: 12px;
   font-weight: 700;
   width: 100%;
-  transition: all 0.3s ease;
+  color: white;
+  transition: all 0.3s;
 }
 
 .btn-primary-cv:hover {
   background-color: var(--cv-blue-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 /* Links */
@@ -82,8 +74,4 @@ a {
   color: var(--cv-blue);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.85rem;
-}
-a:hover {
-  text-decoration: underline;
 }
