@@ -1,0 +1,28 @@
+<div class="auth-wrapper">
+  <div class="logo-container text-center">
+    <img src="assets/logo-white.svg" alt="NATO Logo" class="top-logo">
+  </div>
+
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      
+      <div class="col-lg-6 d-none d-lg-block text-white pe-5 animate__animated animate__fadeIn">
+        <h1 class="display-5 fw-bold mb-4">
+          {{ layoutData.title }}
+        </h1>
+        
+        <p class="fs-5 fw-light opacity-90" *ngIf="layoutData.text1">
+          {{ layoutData.text1 }}
+        </p>
+        <p class="fs-5 fw-light opacity-90" *ngIf="layoutData.text2">
+          {{ layoutData.text2 }}
+        </p>
+      </div>
+
+      <div class="col-12 col-lg-5 offset-lg-1">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+/* src/styles.css */
+@import "../node_modules/bootstrap/scss/bootstrap.scss"; /* Opción A (versiones antiguas CLI) */
+/* O SI TE DA ERROR LA DE ARRIBA, USA ESTA: */
+
+/* ... luego aquí van tus estilos :root, body, etc. que ya tenías ... */
+:root {
+  --cv-blue: #0F3F7A; /* Azul corporativo */
+  --cv-blue-hover: #0a2a52;
+  --cv-radius-card: 24px;
+  --cv-radius-input: 12px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--cv-blue);
+  overflow-x: hidden;
+}
+
+/* --- Estilos del Layout --- */
+.auth-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  /* IMPORTANTE: Aquí deberías poner la URL de tu SVG de la ola exportado de Figma */
+  background: url('assets/wave-bg.svg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* --- Tarjeta Flotante --- */
+.auth-card {
+  background: white;
+  border-radius: var(--cv-radius-card);
+  padding: 2.5rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 480px; /* Ancho máximo de la tarjeta */
+  margin: 0 auto; /* Centrado */
+}
+
+/* --- Inputs Personalizados --- */
+.form-control {
+  border-radius: var(--cv-radius-input);
+  padding: 0.8rem 1rem;
+  border: 1px solid #dee2e6;
+  font-size: 0.9rem;
+}
+
+.form-control:focus {
+  border-color: var(--cv-blue);
+  box-shadow: 0 0 0 0.2rem rgba(15, 63, 122, 0.15);
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+/* --- Botones --- */
+.btn-primary-cv {
+  background-color: var(--cv-blue);
+  color: white;
+  border: none;
+  border-radius: var(--cv-radius-input);
+  padding: 0.8rem;
+  font-weight: 700;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-cv:hover {
+  background-color: var(--cv-blue-hover);
+  transform: translateY(-1px);
+}
+
+/* Links */
+a {
+  color: var(--cv-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+a:hover {
+  text-decoration: underline;
+}
