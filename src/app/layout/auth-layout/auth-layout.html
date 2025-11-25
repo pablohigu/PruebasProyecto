@@ -7,9 +7,7 @@
     <div class="row h-100 align-items-center">
       
       <div class="col-lg-6 d-none d-lg-block text-white pe-5 animate__animated animate__fadeIn">
-        <h1 class="display-5 fw-bold mb-4">
-          {{ layoutData.title }}
-        </h1>
+        <h1 class="display-5 fw-bold mb-4" [innerHTML]="layoutData.title"></h1>
         
         <p class="fs-5 fw-light opacity-90" *ngIf="layoutData.text1">
           {{ layoutData.text1 }}

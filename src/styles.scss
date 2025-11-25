@@ -19,37 +19,41 @@ body, html {
 }
 
 /* 4. Layout Principal (La Ola + La Redecilla) */
+/* .auth-wrapper actualizado */
 .auth-wrapper {
   min-height: 100vh;
   width: 100%;
   position: relative;
-  background-color: var(--cv-blue); /* Fondo azul base */
+  background-color: var(--cv-blue); /* Fondo de respaldo */
 
-  /* --- IMÁGENES DE FONDO --- */
-  background-image: 
-    url('/assets/grid-pattern.svg'), /* Capa 1 (Arriba): Redecilla */
-    url('/assets/wave-bg.svg');      /* Capa 2 (Abajo): Ola */
+  /* CONFIGURACIÓN PARA IMAGEN ÚNICA COMBINADA */
+  background-image: url('/assets/wave-bg.svg');
+  
+  /* Posición: Centrada horizontalmente y pegada abajo */
+  background-position: center bottom;
+  
+  /* No repetir */
+  background-repeat: no-repeat;
 
-  /* --- POSICIÓN --- */
-  background-position: 
-    center top,      /* Redecilla: empieza arriba */
-    center bottom;   /* Ola: pegada abajo del todo */
+  /* Tamaño: Cover asegura que cubra todo el ancho y alto sin dejar huecos */
+  background-size: cover;
 
-  /* --- REPETICIÓN --- */
-  background-repeat: 
-    repeat,          /* Redecilla: se repite para llenar todo */
-    no-repeat;       /* Ola: una sola vez */
-
-  /* --- TAMAÑO (EL CAMBIO CLAVE) --- */
-  background-size: 
-    auto,            /* Redecilla: tamaño natural */
-    100% auto;       /* Ola: Ancho 100%, Alto automático (NO uses cover) */
-
-  /* Flexbox para centrar la tarjeta */
   display: flex;
   flex-direction: column;
+  
   padding-top: 80px; 
   padding-bottom: 40px;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 991px) {
+  .auth-wrapper {
+    padding-top: 100px; 
+    /* En móvil a veces 'contain' o un % funciona mejor si la ola es muy alta, 
+       pero 'cover' suele ser lo estándar */
+    background-size: cover; 
+    background-position: center center; 
+  }
 }
 
 /* 5. La Tarjeta Blanca Flotante */
