@@ -1,49 +1,30 @@
-/* Contenedor principal con fondo y Ola */
 .auth-wrapper {
   min-height: 100vh;
   width: 100%;
   position: relative;
-  background-color: #0F3F7A; /* Color base por si falla la imagen */
-  /* IMPORTANTE: Exporta la forma azul curvada completa desde Figma como SVG */
-  background-image: url('/assets/wave-bg.svg'); 
-  background-size: cover;
-  background-position: center bottom;
+  
+  /* 1. Color de fondo base AZUL (Esencial para que se lea el texto blanco) */
+  background-color: #0F3F7A; /* O usa tu variable var(--cv-blue) */
+
+  /* 2. Imagen de la ola colocada ABAJO */
+  background-image: url('/assets/wave-bg.svg');
   background-repeat: no-repeat;
-  padding-top: 80px; /* Espacio para el logo superior */
+  background-position: bottom center; /* Pegada al suelo */
+  background-size: 100% auto; /* Ancho completo, altura automática */
+
+  /* Espaciado para que el contenido no choque con el borde */
+  padding-top: 80px; 
   padding-bottom: 40px;
+  
+  /* Para evitar scroll horizontal indeseado */
+  overflow-x: hidden;
 }
 
-/* Logo superior */
-.logo-container {
-  position: absolute;
-  top: 30px;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
-
-.top-logo {
-  height: 60px; /* Ajusta según tu SVG */
-  width: auto;
-}
-
-/* Tipografía de la columna izquierda */
-h1 {
-  font-family: 'Montserrat', sans-serif;
-  line-height: 1.2;
-}
-
-p {
-  font-family: 'Montserrat', sans-serif;
-  line-height: 1.5;
-}
-
-/* Ajustes Responsive */
+/* Ajuste para pantallas pequeñas (Móvil/Tablet) */
 @media (max-width: 991px) {
-  /* En tablets/móviles ajustamos el padding para que la tarjeta no pegue arriba */
   .auth-wrapper {
-    display: flex;
-    align-items: center; /* Centrar verticalmente en móvil */
-    padding-top: 100px; 
+    padding-top: 120px;
+    /* En móvil, la ola puede cubrir más (cover) */
+    background-size: cover; 
   }
 }

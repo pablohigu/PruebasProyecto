@@ -2,51 +2,36 @@
   
   <div class="d-flex justify-content-between align-items-start mb-4">
     <div>
-      <h6 class="text-muted mb-1" style="font-weight: 400; font-size: 0.9rem;">Cuatrovientos Voluntariado</h6>
-      <h2 class="fw-bold m-0 text-dark" style="font-size: 2rem;">Inscríbete</h2>
+      <small class="text-muted fw-bold" style="font-size: 0.8rem;">Cuatrovientos Voluntariado</small>
+      <h2 class="fw-bold text-dark mt-1">Inscríbete</h2>
     </div>
-    <img src="/assets/logo-blue.svg" alt="Logo" width="50">
+    <img src="/assets/logo-blue.svg" alt="Logo Azul" width="60">
   </div>
 
   <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-    
     <div class="mb-3">
-      <label class="form-label text-muted small fw-bold">Correo electrónico</label>
-      <input 
-        type="email" 
-        class="form-control" 
-        formControlName="email" 
-        placeholder="nuevo_voluntario@gmail.com"
-      >
+      <label class="form-label">Correo electrónico</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="nuevo_voluntario@gmail.com">
     </div>
 
     <div class="mb-3">
-      <label class="form-label text-muted small fw-bold">Nombre y apellidos</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        formControlName="name" 
-        placeholder="John Doe"
-      >
+      <label class="form-label">Nombre y apellidos</label>
+      <input type="text" class="form-control" formControlName="name" placeholder="John Doe">
     </div>
 
-    <div class="d-flex justify-content-between mt-4 mb-4">
-      
-      <div class="text-start">
-        <small class="text-muted d-block mb-1">¿Ya tienes cuenta?</small>
-        <a routerLink="/login" class="fw-bold text-decoration-none small">Inicia sesión</a>
+    <div class="d-flex justify-content-between mt-4 mb-4 small">
+      <div>
+        <span class="text-muted">¿Ya tienes cuenta?</span><br>
+        <a routerLink="/login" class="fw-bold">Inicia sesión</a>
       </div>
-
       <div class="text-end">
-        <small class="text-muted d-block mb-1">¿Eres una entidad?</small>
-        <a routerLink="/register-entity" class="fw-bold text-decoration-none small">Manda una solicitud</a>
+        <span class="text-muted">¿Eres una entidad?</span><br>
+        <a routerLink="/register-entity" class="fw-bold">Manda una solicitud</a>
       </div>
-      
     </div>
 
-    <button type="submit" class="btn btn-primary-cv w-100 py-2">
+    <button type="submit" class="btn btn-primary-cv w-100">
       Inscríbete
     </button>
-
   </form>
 </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { RouterOutlet, Router, NavigationEnd, ActivatedRoute, Event } from '@angular/router';
+import { filter, map, mergeMap, startWith } from 'rxjs/operators'; // IMPORTANTE: Añadir startWith
 
 @Component({
   selector: 'app-auth-layout',
@@ -14,27 +14,30 @@ export class AuthLayoutComponent implements OnInit {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
 
-  // Datos por defecto
   layoutData: any = {
-    title: 'Bienvenido',
+    title: '',
     text1: '',
     text2: ''
   };
 
   ngOnInit() {
-    // Escuchamos la navegación para actualizar el texto lateral dinámicamente
-    // basándonos en la data definida en las rutas (app.routes.ts)
     this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
+      // Filtramos eventos de navegación
+      filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd),
+      // IMPORTANTE: Forzamos un valor inicial para que se ejecute al cargar la página
+      startWith(this.router), 
       map(() => this.route),
       map(route => {
-        while (route.firstChild) route = route.firstChild;
+        // Buscamos la ruta hija más profunda (donde está la 'data')
+        while (route.firstChild) {
+          route = route.firstChild;
+        }
         return route;
       }),
       mergeMap(route => route.data)
     ).subscribe((data: any) => {
-      // Si la ruta tiene datos, actualizamos. Si no, mantenemos o limpiamos.
-      if (data && (data.title || data.text1)) {
+      // Actualizamos los datos si existen
+      if (data) {
         this.layoutData = data;
       }
     });

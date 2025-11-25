@@ -1,33 +1,48 @@
 <div class="auth-card animate__animated animate__fadeInUp">
-  <div class="d-flex justify-content-between align-items-center mb-4">
+  
+  <div class="d-flex justify-content-between align-items-start mb-3">
     <div>
-      <small class="text-muted d-block mb-1">Cuatrovientos Voluntariado - Entidades</small>
-      <h2 class="fw-bold m-0 text-dark">Inscríbete</h2>
+      <small class="text-muted fw-bold" style="font-size: 0.8rem;">Cuatrovientos Voluntariado - Entidades</small>
+      <h2 class="fw-bold text-dark mt-1">Inscríbete</h2>
     </div>
-    <img src="/assets/logo-blue.svg" alt="Logo" width="50">
+    <img src="/assets/logo-blue.svg" alt="Logo Azul" width="60">
   </div>
 
   <form [formGroup]="entityForm" (ngSubmit)="onSubmit()">
-    <div class="row g-3">
-      <div class="col-12">
-        <label class="form-label text-muted small fw-bold">Razón social o nombre</label>
-        <input type="text" class="form-control" formControlName="orgName" placeholder="Nombre de la organización">
+    <div class="row g-4">
+      
+      <div class="col-12 col-md-6">
+        <div class="mb-3">
+          <label class="form-label">Razón social o nombre de la organización</label>
+          <input type="text" class="form-control" formControlName="orgName" placeholder="Razón social o nombre de la organización">
+        </div>
+
+        <div class="mb-0">
+          <label class="form-label">Correo electrónico</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="entidad@entidad.tld">
+        </div>
       </div>
 
-      <div class="col-12">
-        <label class="form-label text-muted small fw-bold">Correo electrónico</label>
-        <input type="email" class="form-control" formControlName="email" placeholder="contacto@organizacion.com">
+      <div class="col-12 col-md-6 d-flex flex-column">
+        <label class="form-label">Mensaje</label>
+        <textarea class="form-control flex-grow-1" formControlName="message" style="min-height: 138px; resize: none;" placeholder="Tu mensaje"></textarea>
       </div>
 
-      <div class="col-12">
-        <label class="form-label text-muted small fw-bold">Mensaje</label>
-        <textarea class="form-control" formControlName="message" rows="5" placeholder="Cuéntanos tu propuesta..."></textarea>
+    </div>
+
+    <div class="mt-4 pt-2">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <small class="text-muted">¿Ya tienes cuenta?</small><br>
+          <a routerLink="/login" class="small fw-bold">Inicia sesión</a>
+        </div>
+        <div class="col-6 text-end">
+          <button type="submit" class="btn btn-primary-cv px-5">
+            Inscríbete
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="mt-4 d-flex justify-content-between align-items-center">
-       <span class="small text-muted">¿Eres alumno? <a routerLink="/register-student" class="fw-bold text-decoration-none">Click aquí</a></span>
-       <button type="submit" class="btn btn-primary-cv px-5" style="width: auto;">Inscríbete</button>
-    </div>
   </form>
 </div>
