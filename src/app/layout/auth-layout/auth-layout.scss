@@ -1,34 +1,41 @@
 .auth-wrapper {
+  /* Ocupar toda la pantalla */
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;      /* Ancho de la ventana */
+  max-width: 100%;   /* Evitar scroll horizontal accidental */
   position: relative;
-  
-  /* 1. Fondo AZUL obligatorio */
-  background-color: #0F3F7A; 
+  overflow-x: hidden;
 
-  /* 2. La ola solo abajo */
+  background-color: #ffffff; 
+
+  /* IMAGEN DE FONDO */
   background-image: url('/assets/wave-bg.svg');
   background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: 100% auto; /* Ancho completo */
-
-  /* Espaciado */
-  padding-top: 80px; 
-  padding-bottom: 40px;
   
-  overflow-x: hidden;
+  /* Posición: Arriba Centro (para que se vea el logo del SVG centrado arriba) */
+  background-position: top center;
+  
+  /* Tamaño: COVER hace que la imagen cubra todo el espacio sin dejar huecos blancos.
+     Si la imagen se recorta mucho, prueba con '100% 100%' para forzar estiramiento. */
+  background-size: cover; 
+
+  /* Espaciado interior */
+  /* Ajusta el padding-top si el contenido (texto/login) se monta encima del logo del fondo */
+  padding-top: 120px; 
+  padding-bottom: 40px;
 }
 
-/* Asegurar que el contenido esté por encima del fondo */
-.container {
-  position: relative;
-  z-index: 10;
+/* Elimina los estilos viejos del logo flotante que ya no existe */
+.logo-container, .top-logo {
+  display: none;
 }
 
-/* Ajuste Movil */
+/* Ajuste Responsive Móvil */
 @media (max-width: 991px) {
   .auth-wrapper {
-    padding-top: 120px;
+    /* En móvil quizás necesites ajustar la posición si el logo se sale */
+    background-position: top center;
     background-size: cover; 
+    padding-top: 140px; /* Más espacio arriba para no tapar el logo en móvil */
   }
 }

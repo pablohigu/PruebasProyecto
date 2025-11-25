@@ -12,35 +12,39 @@ import { filter } from 'rxjs/operators';
 })
 export class AuthLayoutComponent implements OnInit {
   private router = inject(Router);
-  private route = inject(ActivatedRoute);
-
+  
+  // Inicializamos con valores por defecto para evitar errores
   layoutData: any = {
-    title: '',
+    title: 'Cargando...', 
     text1: '',
+    subtitle: '',
     text2: ''
   };
 
   ngOnInit() {
-    // 1. FORZAR lectura inicial (Esto arregla que no se vea al dar F5)
-    this.updateContent();
+    // 1. Carga inmediata al iniciar el componente
+    this.updateDataFromRoute();
 
-    // 2. Escuchar navegaciones futuras
+    // 2. Suscripción a cambios de navegación (para cuando cambias entre login y registro)
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      this.updateContent();
+      this.updateDataFromRoute();
     });
   }
 
-  private updateContent() {
-    let currentRoute = this.route;
-    // Bajar hasta la última ruta hija (donde definiste el data en app.routes.ts)
+  private updateDataFromRoute() {
+    // Truco: Usar routerState.root busca desde la raíz global, no desde este componente
+    let currentRoute = this.router.routerState.root;
+    
+    // Bajamos hasta encontrar la última ruta hija activa (Login, Register, etc.)
     while (currentRoute.firstChild) {
       currentRoute = currentRoute.firstChild;
     }
-    
-    // Usamos 'snapshot' para obtener los datos YA, sin esperar eventos
-    if (currentRoute.snapshot.data) {
+
+    // Si encontramos datos en esa ruta, actualizamos la variable
+    if (currentRoute.snapshot.data && Object.keys(currentRoute.snapshot.data).length > 0) {
+      console.log('Datos encontrados:', currentRoute.snapshot.data); // Mira la consola del navegador (F12)
       this.layoutData = currentRoute.snapshot.data;
     }
   }
