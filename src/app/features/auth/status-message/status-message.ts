@@ -7,14 +7,14 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './status-message.html',
-  styleUrls: []
+  styleUrls: [] 
 })
 export class StatusMessageComponent {
-  // Usamos nombres específicos 'card...' para que no se mezclen con el layout
+  // CAMBIO IMPORTANTE: Usamos 'cardTitle' y 'cardMessage' para evitar conflictos
   @Input() cardTitle: string = '¡Solicitud enviada!';
   
   @Input() cardMessage: string = 'Pronto recibirás un correo electrónico a la dirección que nos has proporcionado con la resolución de tu petición.';
   
   @Input() showContactLink: boolean = true;
-  @Input() backLink: string = ''; 
+  @Input() backLink: string = '/login';
 }
