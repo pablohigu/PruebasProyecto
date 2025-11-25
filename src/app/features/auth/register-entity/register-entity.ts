@@ -1,19 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router'; // Importar Router
 
 @Component({
   selector: 'app-register-entity',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register-entity.html',
-  styleUrls: ['./register-entity.scss'] // Si está vacío no pasa nada
+  styleUrls: ['./register-entity.scss']
 })
 export class RegisterEntityComponent {
   private fb = inject(FormBuilder);
+  private router = inject(Router); // Inyectar Router
 
-  // Definición del formulario
   entityForm = this.fb.group({
     orgName: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
@@ -23,10 +23,9 @@ export class RegisterEntityComponent {
   onSubmit() {
     if (this.entityForm.valid) {
       console.log('REGISTRO ENTIDAD ENVIADO:', this.entityForm.value);
-      // Aquí conectarías con tu servicio...
-      // ej: this.authService.registerEntity(this.entityForm.value)...
+      // REDIRECCIÓN
+      this.router.navigate(['/request-sent']);
     } else {
-      // Muestra los errores rojos si el usuario intenta enviar vacío
       this.entityForm.markAllAsTouched();
     }
   }
