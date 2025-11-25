@@ -22,7 +22,7 @@ export class RegisterStudentComponent {
   onSubmit() {
     if (this.studentForm.valid) {
       console.log('Registro Alumno:', this.studentForm.value);
-      // REDIRECCIÓN
+      // REDIRECCIÓN A LA PANTALLA DE ÉXITO
       this.router.navigate(['/request-sent']);
     } else {
       this.studentForm.markAllAsTouched();

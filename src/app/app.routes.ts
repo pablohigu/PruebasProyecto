@@ -3,7 +3,7 @@ import { RegisterStudentComponent } from './features/auth/register-student/regis
 import { LoginComponent } from './features/auth/login/login';
 import { RegisterEntityComponent } from './features/auth/register-entity/register-entity';
 import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password';
-import { StatusMessageComponent } from './features/auth/status-message/status-message'; // Importar
+import { StatusMessageComponent } from './features/auth/status-message/status-message';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout';
 
 export const routes: Routes = [
@@ -15,6 +15,7 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         data: { 
+          // DATOS DEL LAYOUT (Izquierda - Fondo Azul)
           title: 'Inicia sesión en', 
           subtitle: 'Cuatrovientos Voluntariado', 
           text1: 'Con tu pequeño gesto podremos hacer grandes historias que contar.',
@@ -49,15 +50,18 @@ export const routes: Routes = [
           text2: 'Introduce tu correo electrónico y te enviaremos las instrucciones para restablecerla.'
         }
       },
-      // --- NUEVA RUTA: SOLICITUD ENVIADA ---
       {
         path: 'request-sent',
         component: StatusMessageComponent,
         data: {
-          // Datos para el Layout Izquierdo (Opcional, puedes repetir los de registro o poner nuevos)
-          // Datos para el Componente Central (Card)
-          // Nota: StatusMessageComponent usará sus valores por defecto si no se sobrescriben aquí, 
-          // que ya coinciden con tu imagen.
+          // DATOS DEL LAYOUT (Izquierda)
+          title: '¡Gracias!',
+          subtitle: 'Cuatrovientos Voluntariado',
+          text1: 'Hemos recibido tu solicitud correctamente.'
+          
+          // NOTA: No pasamos 'title' para la tarjeta aquí para evitar conflictos.
+          // El componente StatusMessageComponent usará sus propios valores por defecto 
+          // (cardTitle='¡Solicitud enviada!', etc.) que definimos en su .ts
         }
       },
       { path: '', redirectTo: 'login', pathMatch: 'full' }
