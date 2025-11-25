@@ -2,8 +2,7 @@ import { Routes } from '@angular/router';
 import { RegisterStudentComponent } from './features/auth/register-student/register-student';
 import { LoginComponent } from './features/auth/login/login';
 import { RegisterEntityComponent } from './features/auth/register-entity/register-entity';
-// IMPORTA TU COMPONENTE DE OLVIDO DE CONTRASEÑA AQUÍ
-// import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password'; 
+import { ForgotPasswordComponent } from './features/auth/forgot-password/forgot-password'; // Asegúrate de importar el componente real
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout';
 
 export const routes: Routes = [
@@ -15,8 +14,8 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         data: { 
-          title: 'Inicia sesión en',
-          subtitle: 'Cuatrovientos Voluntariado',
+          title: 'Inicia sesión en', 
+          subtitle: 'Cuatrovientos Voluntariado', 
           text1: 'Con tu pequeño gesto podremos hacer grandes historias que contar.',
           text2: 'Que nuestras anécdotas sean testimonio de que cada sonrisa cuenta'
         }
@@ -36,16 +35,15 @@ export const routes: Routes = [
         component: RegisterEntityComponent,
         data: { 
           title: '¿Quieres formar parte del cambio?',
-          // Sin subtítulo para entidad, o pon uno si quieres
+          // Dejamos subtitle vacío o lo omitimos si no lleva
           text1: 'Únete como entidad colaboradora y ayúdanos a crecer.' 
         }
       },
-      // --- NUEVA RUTA PARA RECUPERAR CONTRASEÑA ---
       {
         path: 'forgot-password',
-        // component: ForgotPasswordComponent, // Descomenta cuando tengas el componente
-        loadComponent: () => import('./features/auth/status-message/status-message').then(m => m.StatusMessageComponent), // O usa lazy loading si prefieres
+        component: ForgotPasswordComponent,
         data: {
+          // Estos textos aparecerán a la izquierda
           title: 'Recupera tu cuenta',
           subtitle: 'Cuatrovientos Voluntariado',
           text1: 'No te preocupes, nos pasa a todos.',

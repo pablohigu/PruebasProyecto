@@ -1,41 +1,36 @@
 .auth-wrapper {
   /* Ocupar toda la pantalla */
   min-height: 100vh;
-  width: 100vw;      /* Ancho de la ventana */
-  max-width: 100%;   /* Evitar scroll horizontal accidental */
+  width: 100%;
   position: relative;
   overflow-x: hidden;
 
-  background-color: #ffffff; 
+  /* Fondo base por si tarda en cargar la imagen */
+  background-color: #0F3F7A; 
 
-  /* IMAGEN DE FONDO */
+  /* CONFIGURACIÓN DE FONDO */
   background-image: url('/assets/wave-bg.svg');
   background-repeat: no-repeat;
   
-  /* Posición: Arriba Centro (para que se vea el logo del SVG centrado arriba) */
+  /* Posición: Centrado arriba. 
+     Esto asegura que el logo (que está arriba en el SVG) siempre se vea centrado. */
   background-position: top center;
   
-  /* Tamaño: COVER hace que la imagen cubra todo el espacio sin dejar huecos blancos.
-     Si la imagen se recorta mucho, prueba con '100% 100%' para forzar estiramiento. */
-  background-size: cover; 
+  /* Tamaño: COVER.
+     Hace que la imagen cubra todo el fondo. Como el SVG ahora está bien hecho,
+     se adaptará sin deformarse y sin dejar líneas raras. */
+  background-size: cover;
 
-  /* Espaciado interior */
-  /* Ajusta el padding-top si el contenido (texto/login) se monta encima del logo del fondo */
-  padding-top: 120px; 
+  /* Espaciado interior para que el texto no choque con el logo */
+  padding-top: 160px; 
   padding-bottom: 40px;
 }
 
-/* Elimina los estilos viejos del logo flotante que ya no existe */
-.logo-container, .top-logo {
-  display: none;
-}
-
-/* Ajuste Responsive Móvil */
+/* Ajuste para Móvil */
 @media (max-width: 991px) {
   .auth-wrapper {
-    /* En móvil quizás necesites ajustar la posición si el logo se sale */
+    /* En móvil damos un poco más de aire arriba para el logo */
+    padding-top: 140px;
     background-position: top center;
-    background-size: cover; 
-    padding-top: 140px; /* Más espacio arriba para no tapar el logo en móvil */
   }
 }
