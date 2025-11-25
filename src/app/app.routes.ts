@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
+import { RegisterStudentComponent } from './features/auth/register-student/register-student';
 import { LoginComponent } from './features/auth/login/login';
 import { RegisterEntityComponent } from './features/auth/register-entity/register-entity';
-import { RegisterStudentComponent } from './features/auth/register-student/register-student';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout';
 
 export const routes: Routes = [
@@ -13,31 +13,28 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         data: { 
-          // El <br> fuerza el salto de línea después de "en" como en la foto
+          // Título con salto de línea (<br>)
           title: 'Inicia sesión en <br> Cuatrovientos Voluntariado',
-          
-          // Párrafo 1
           text1: 'Con tu pequeño gesto podremos hacer grandes historias que contar.',
-          
-          // Párrafo 2
-          text2: 'Que nuestras anécdotas sean testimonio de que cada sonrisa cuenta.'
+          text2: 'Que nuestras anécdotas sean testimonio de que cada sonrisa cuenta'
         }
       },
       {
-        path: 'register-student',
+        path: 'register-student', // Ruta de ALUMNO
         component: RegisterStudentComponent,
         data: { 
           title: 'Inscríbete en <br> Cuatrovientos Voluntariado',
-          text1: 'Únete a nuestra comunidad y comienza a dejar tu huella.'
-          // text2: '' // Puedes dejarlo vacío si no hay segundo párrafo
+          text1: 'Con tu pequeño gesto podremos hacer grandes historias que contar.',
+          text2: 'Que nuestras anécdotas sean testimonio de que cada sonrisa cuenta'
         }
       },
       {
-        path: 'register-entity',
+        path: 'register-entity', // Ruta de ENTIDAD
         component: RegisterEntityComponent,
         data: { 
-          title: 'Colabora con <br> Cuatrovientos Voluntariado',
-          text1: 'Juntos podemos construir un futuro lleno de oportunidades.'
+          title: '¿Quieres formar parte del cambio?',
+          // En entidad parece que no lleva párrafos pequeños según tu captura, o puedes poner uno genérico:
+          text1: 'Únete como entidad colaboradora y ayúdanos a crecer.' 
         }
       },
       { path: '', redirectTo: 'login', pathMatch: 'full' }
