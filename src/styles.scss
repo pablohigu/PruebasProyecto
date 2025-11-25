@@ -1,13 +1,13 @@
 /* 1. Importar Bootstrap (Obligatorio) */
-@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 /* 2. Fuentes y Variables */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 
 :root {
-  --cv-blue: #0F3F7A;       /* Azul oscuro del logo */
+  --cv-blue: #0F3F7A;       /* Azul corporativo */
   --cv-blue-hover: #0a2a52;
-  --cv-light-blue: #eef2f7; /* Fondo suave por si falla la imagen */
+  --cv-light-blue: #eef2f7;
 }
 
 /* 3. Estilos Base */
@@ -15,29 +15,53 @@ body, html {
   height: 100%;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background-color: var(--cv-blue); /* Fondo de respaldo */
+  background-color: var(--cv-blue);
 }
 
-/* 4. Layout Principal (La Ola) */
+/* 4. Layout Principal (La Ola + La Redecilla) */
 .auth-wrapper {
   min-height: 100vh;
   width: 100%;
-  background-image: url('/assets/wave-bg.svg'); /* Asegúrate de tener esta imagen */
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
+  position: relative;
+  background-color: var(--cv-blue); /* Fondo azul base */
+
+  /* --- IMÁGENES DE FONDO --- */
+  background-image: 
+    url('/assets/grid-pattern.svg'), /* Capa 1 (Arriba): Redecilla */
+    url('/assets/wave-bg.svg');      /* Capa 2 (Abajo): Ola */
+
+  /* --- POSICIÓN --- */
+  background-position: 
+    center top,      /* Redecilla: empieza arriba */
+    center bottom;   /* Ola: pegada abajo del todo */
+
+  /* --- REPETICIÓN --- */
+  background-repeat: 
+    repeat,          /* Redecilla: se repite para llenar todo */
+    no-repeat;       /* Ola: una sola vez */
+
+  /* --- TAMAÑO (EL CAMBIO CLAVE) --- */
+  background-size: 
+    auto,            /* Redecilla: tamaño natural */
+    100% auto;       /* Ola: Ancho 100%, Alto automático (NO uses cover) */
+
+  /* Flexbox para centrar la tarjeta */
   display: flex;
   flex-direction: column;
+  padding-top: 80px; 
+  padding-bottom: 40px;
 }
 
-/* 5. La Tarjeta Blanca Flotante (Lo que falta en tu captura) */
+/* 5. La Tarjeta Blanca Flotante */
 .auth-card {
   background: white;
-  border-radius: 24px; /* Bordes redondeados */
+  border-radius: 24px; 
   padding: 2.5rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); 
   border: none;
   width: 100%;
+  /* Animación de entrada suave */
+  animation: fadeInUp 0.5s ease-out;
 }
 
 /* 6. Inputs y Botones personalizados */
@@ -74,4 +98,31 @@ a {
   color: var(--cv-blue);
   text-decoration: none;
   font-weight: 600;
+}
+
+/* Animación simple por si no usas animate.css */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Ajustes Responsive */
+@media (max-width: 991px) {
+  .auth-wrapper {
+    padding-top: 100px; 
+    justify-content: center; /* Centrar verticalmente en móvil */
+  }
+  
+  /* Ajustar fondo en móvil si es necesario */
+  .auth-wrapper {
+    background-size: 
+      120% auto,  /* Redecilla un poco más grande en móvil */
+      cover;
+  }
 }
