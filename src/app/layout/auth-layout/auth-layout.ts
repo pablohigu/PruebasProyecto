@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, Router, NavigationEnd, ActivatedRoute, Event } from '@angular/router';
-import { filter, map, mergeMap, startWith } from 'rxjs/operators'; // IMPORTANTE: Añadir startWith
+import { RouterOutlet, Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-auth-layout',
@@ -21,25 +21,27 @@ export class AuthLayoutComponent implements OnInit {
   };
 
   ngOnInit() {
+    // 1. FORZAR lectura inicial (Esto arregla que no se vea al dar F5)
+    this.updateContent();
+
+    // 2. Escuchar navegaciones futuras
     this.router.events.pipe(
-      // Filtramos eventos de navegación
-      filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd),
-      // IMPORTANTE: Forzamos un valor inicial para que se ejecute al cargar la página
-      startWith(this.router), 
-      map(() => this.route),
-      map(route => {
-        // Buscamos la ruta hija más profunda (donde está la 'data')
-        while (route.firstChild) {
-          route = route.firstChild;
-        }
-        return route;
-      }),
-      mergeMap(route => route.data)
-    ).subscribe((data: any) => {
-      // Actualizamos los datos si existen
-      if (data) {
-        this.layoutData = data;
-      }
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.updateContent();
     });
+  }
+
+  private updateContent() {
+    let currentRoute = this.route;
+    // Bajar hasta la última ruta hija (donde definiste el data en app.routes.ts)
+    while (currentRoute.firstChild) {
+      currentRoute = currentRoute.firstChild;
+    }
+    
+    // Usamos 'snapshot' para obtener los datos YA, sin esperar eventos
+    if (currentRoute.snapshot.data) {
+      this.layoutData = currentRoute.snapshot.data;
+    }
   }
 }

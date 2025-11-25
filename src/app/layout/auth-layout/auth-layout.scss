@@ -3,28 +3,32 @@
   width: 100%;
   position: relative;
   
-  /* 1. Color de fondo base AZUL (Esencial para que se lea el texto blanco) */
-  background-color: #0F3F7A; /* O usa tu variable var(--cv-blue) */
+  /* 1. Fondo AZUL obligatorio */
+  background-color: #0F3F7A; 
 
-  /* 2. Imagen de la ola colocada ABAJO */
+  /* 2. La ola solo abajo */
   background-image: url('/assets/wave-bg.svg');
   background-repeat: no-repeat;
-  background-position: bottom center; /* Pegada al suelo */
-  background-size: 100% auto; /* Ancho completo, altura automática */
+  background-position: center bottom;
+  background-size: 100% auto; /* Ancho completo */
 
-  /* Espaciado para que el contenido no choque con el borde */
+  /* Espaciado */
   padding-top: 80px; 
   padding-bottom: 40px;
   
-  /* Para evitar scroll horizontal indeseado */
   overflow-x: hidden;
 }
 
-/* Ajuste para pantallas pequeñas (Móvil/Tablet) */
+/* Asegurar que el contenido esté por encima del fondo */
+.container {
+  position: relative;
+  z-index: 10;
+}
+
+/* Ajuste Movil */
 @media (max-width: 991px) {
   .auth-wrapper {
     padding-top: 120px;
-    /* En móvil, la ola puede cubrir más (cover) */
     background-size: cover; 
   }
 }
