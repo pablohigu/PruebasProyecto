@@ -11,12 +11,33 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label class="form-label">Correo electrónico</label>
-      <input type="email" class="form-control" formControlName="email" placeholder="iryna_pavlenko@cuatrovientos.org">
+      <input 
+        type="email" 
+        class="form-control" 
+        formControlName="email" 
+        placeholder="iryna_pavlenko@cuatrovientos.org"
+        [class.is-invalid]="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+      
+      <div class="invalid-feedback" *ngIf="loginForm.get('email')?.errors?.['required']">
+        El correo es obligatorio.
+      </div>
+      <div class="invalid-feedback" *ngIf="loginForm.get('email')?.errors?.['email']">
+        Introduce un correo válido.
+      </div>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Contraseña</label>
-      <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+      <input 
+        type="password" 
+        class="form-control" 
+        formControlName="password" 
+        placeholder="Contraseña"
+        [class.is-invalid]="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+      
+      <div class="invalid-feedback" *ngIf="loginForm.get('password')?.errors?.['required']">
+        La contraseña es obligatoria.
+      </div>
     </div>
 
     <div class="d-flex justify-content-between align-items-center mt-2 mb-4 small">

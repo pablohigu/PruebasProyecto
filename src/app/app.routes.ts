@@ -57,11 +57,12 @@ export const routes: Routes = [
           // DATOS DEL LAYOUT (Izquierda)
           title: '¡Gracias!',
           subtitle: 'Cuatrovientos Voluntariado',
-          text1: 'Hemos recibido tu solicitud correctamente.'
+          text1: 'Hemos recibido tu solicitud correctamente.',
           
-          // NOTA: No pasamos 'title' para la tarjeta aquí para evitar conflictos.
-          // El componente StatusMessageComponent usará sus propios valores por defecto 
-          // (cardTitle='¡Solicitud enviada!', etc.) que definimos en su .ts
+          // --- DATOS PARA LA TARJETA (Parte Derecha) ---
+          // Necesarios para que withComponentInputBinding los inyecte en los @Input
+          cardTitle: '¡Solicitud enviada!',
+          cardMessage: 'Pronto recibirás un correo electrónico a la dirección que nos has proporcionado con la resolución de tu petición.'
         }
       },
       { path: '', redirectTo: 'login', pathMatch: 'full' }
